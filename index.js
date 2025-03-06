@@ -4,6 +4,9 @@ let pingmintime = 900;
 
 function getTime(timestr){ //Get timer from jQuery selector
     const count = timestr.split(" ");
+    while(count.length > 4){
+        count.pop();
+    }
     if(count.length === 4){ // count = [num_min: str]['minutes, '][num_sec: str]['seconds, ']
         return parseInt(count[0], 10) * 60 + parseInt(count[2], 10); //minutes val to base10, multiply by 60 and add to seconds val for seconds
     } else if(count.length === 2 && ((count[1] == "minute") || (count[1] == "minutes"))){
