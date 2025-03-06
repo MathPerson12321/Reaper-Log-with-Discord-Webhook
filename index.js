@@ -16,7 +16,7 @@ function getTime(timestr){ //Get timer from jQuery selector
 }
 
 function extractLastTime(str) {
-    const match = str.match(/(\d+ minutes, \d+ seconds)$/);
+    const match = str.match(/(\d+ minutes, \d+ seconds)/);
     return match ? match[0] : null;
 }
 
@@ -51,7 +51,7 @@ function sendWebhook(message){
 (function() {
     (function awaitTimeAndReap(n, f){ //params: n is time for reap (s), f is time for free reap (s)
         setInterval(() => {
-            let content =document.getElementById("recent-reaps").children[1];
+            let content = document.getElementById("recent-reaps").children[1];
             if(content != lastReap){
                 let timereaped = extractLastTime(content.textContent);
                 let username = extractUsername(content.textContent);
