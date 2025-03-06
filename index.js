@@ -1,8 +1,8 @@
 let webhookURL = "https://discord.com/api/webhooks/1347016202530328588/A7P9G1H-A_iw847pBPADBj6lWDoCjcyD8OpzrIiFDIu0iAWidpBudELEZkL5Xylz5lU6"; // Replace with your Discord Webhook URL
 let lastReap = "";
 
-function getTime(){ //Get timer from jQuery selector
-    const count = $("#last-reap")[0].textContent.split(' '); //get time and set into text array
+function getTime(timestr){ //Get timer from jQuery selector
+    const count = timestr.split(" ");
     if(count.length === 4){ // count = [num_min: str]['minutes, '][num_sec: str]['seconds, ']
         return parseInt(count[0], 10) * 60 + parseInt(count[2], 10); //minutes val to base10, multiply by 60 and add to seconds val for seconds
     } else if(count.length === 2 && ((count[1] == "minute") || (count[1] == "minutes"))){
@@ -53,14 +53,14 @@ function sendWebhook(message){
         setInterval(() => {
             let content =document.getElementById("recent-reaps").children[1];
             if(content != lastReap){
-                let timereaped = getTime(extractLastTime(content.textContent));
+                let timereaped = extractLastTime(content.textContent);
                 let username = extractUsername(content.textContent);
                 let bonus = extractBonus(content.textContent);
                 let message = "";
                 if(bonus == null){
-                    message = username + " reaped " + timereaped + " seconds raw.";
+                    message = username + " reaped " + timereaped + " (" + getTime(timereaped) + " seconds).";
                 }else{
-                    message = username + " reaped " + timereaped + " seconds with a " + bonus;
+                    message = username + " reaped " + timereaped + " (" + getTime(timereaped) + " seconds) with a " + bonus + ".";
                 }
                 sendWebhook(message);
                 lastReap = content;
