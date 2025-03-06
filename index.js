@@ -76,7 +76,7 @@ function sendWebhook(message){
                 }else{
                     message = username + " reaped " + timereaped + " (" + getTime(timereaped) + " seconds) with a " + bonus + ".";
                 }
-                message += " Reaped at <t:"+Math.floor(Date.now() / 1000)+":d>, "+extractTimeFromString(content.textContent);
+                message += " Reaped at <t:"+Math.floor(Date.now() / 1000)+":d>, <t:"+Math.floor(Date.now() / 1000)+":t>";
                 sendWebhook(message);
                 lastReap = content;
             }
