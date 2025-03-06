@@ -20,9 +20,11 @@ function getTime(timestr){ //Get timer from jQuery selector
 }
 
 function extractLastTime(str) {
-    const match = str.match(/(\d+ minutes, \d+ seconds)/);
+    const match = str.match(/(?<=gained\s)(.*)/);
     return match ? match[0] : null;
 }
+
+console.log(extractLastTime("nathancooper reaped on Mar 6, 16:24:51 and gained 1 minute"));
 
 function extractUsername(str) {
     const match = str.match(/^(\S+)/);
