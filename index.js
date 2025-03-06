@@ -24,8 +24,6 @@ function extractLastTime(str) {
     return match ? match[0] : null;
 }
 
-console.log(extractLastTime("nathancooper reaped on Mar 6, 16:24:51 and gained 1 minute"));
-
 function extractUsername(str) {
     const match = str.match(/^(\S+)/);
     return match ? match[1] : null;
@@ -81,10 +79,10 @@ function sendWebhook(message){
                 }else{
                     message = username + " reaped " + timereaped + " (" + getTime(timereaped) + " seconds) with a " + bonus + ".";
                 }
-                const date = new Date();
-                const [hours, minutes, seconds] = extractTimeFromString(content.textContent).split(":").map(Number);
-                date.setUTCHours(hours, minutes, seconds, 0);
-                const unixTimestamp = Math.floor(date.getTime() / 1000);
+                const today = new Date();
+                const [hours, minutes, seconds] = timeString.split(':').map(Number);
+                const timeDate = new Date(today.setHours(hours, minutes, seconds, 0));
+                const unixTimestamp = Math.floor(timeDate.getTime() / 1000);
                 message += " Reaped at <t:"+unixTimestamp+":d>, <t:"+unixTimestamp+":T>";
                 sendWebhook(message);
                 lastReap = content;
