@@ -1,5 +1,5 @@
 let webhookURL = "https://discord.com/api/webhooks/1347016202530328588/A7P9G1H-A_iw847pBPADBj6lWDoCjcyD8OpzrIiFDIu0iAWidpBudELEZkL5Xylz5lU6"; // Replace with your Discord Webhook URL
-let lastReap = "";
+let lastReap = document.getElementById("recent-reaps").children[1];
 
 function getTime(timestr){ //Get timer from jQuery selector
     const count = timestr.split(" ");
@@ -64,6 +64,13 @@ function sendWebhook(message){
                 }
                 sendWebhook(message);
                 lastReap = content;
+            }
+            let pingsent = false;
+            if(getTime(document.getElementById("last-reap").textContent) > 720 && getTime(document.getElementById("last-reap").textContent) % 60 < 1 && pingsent == false){
+                sendWebhook("@everyone Timer is at " + getTime(document.getElementById("last-reap").textContent) + " seconds.");
+                pingsent = true
+            }else if(getTime(document.getElementById("last-reap").textContent) % 60 > 2){
+                pingsent = false
             }
         }, 200);
     })(100, 362); //change these vals (in seconds) if you want.
