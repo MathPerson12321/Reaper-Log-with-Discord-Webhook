@@ -37,7 +37,8 @@ function sendWebhook(message){
         setInterval(() => {
             let time = getTime();
             if(time < 1){
-                sendWebhook("Reaped");
+                let content = document.getElementById("recent-reaps").children[1];
+                sendWebhook(content.textContent);
             }
         }, 200);
     })(100, 362); //change these vals (in seconds) if you want.
