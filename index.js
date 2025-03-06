@@ -79,10 +79,10 @@ function sendWebhook(message){
                 }else{
                     message = username + " reaped " + timereaped + " (" + getTime(timereaped) + " seconds) with a " + bonus + ".";
                 }
-                const today = new Date();
-                const [hours, minutes, seconds] = content.textContent.split(':').map(Number);
-                const timeDate = new Date(today.setHours(hours, minutes, seconds, 0));
-                const unixTimestamp = Math.floor(timeDate.getTime() / 1000);
+                const date = new Date();
+                const [hours, minutes, seconds] = extractTimeFromString(content.textContent).split(':').map(Number);
+                date.setHours(hours, minutes, seconds, 0);
+                const unixTimestamp = Math.floor(date.getTime() / 1000);
                 message += " Reaped at <t:"+unixTimestamp+":d>, <t:"+unixTimestamp+":T>";
                 sendWebhook(message);
                 lastReap = content;
