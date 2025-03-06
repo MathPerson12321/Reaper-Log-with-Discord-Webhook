@@ -1,4 +1,4 @@
-let webhookURL = "YOUR_DISCORD_WEBHOOK_URL"; // Replace with your Discord Webhook URL
+let webhookURL = "https://discord.com/api/webhooks/1347016202530328588/A7P9G1H-A_iw847pBPADBj6lWDoCjcyD8OpzrIiFDIu0iAWidpBudELEZkL5Xylz5lU6"; // Replace with your Discord Webhook URL
 
 function getTime(){ //Get timer from jQuery selector
     const count = $("#last-reap")[0].textContent.split(' '); //get time and set into text array
