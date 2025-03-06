@@ -31,6 +31,19 @@ function extractBonus(str) {
     return match ? match[0] : null;
 }
 
+function extractTimeFromString(inputString) {
+  // Regular expression to match the time format HH:MM:SS
+  const timeRegex = /\b(\d{2}:\d{2}:\d{2})\b/;
+  
+  const match = inputString.match(timeRegex);
+  
+  if (match) {
+    return match[0]; // Return the time in HH:MM:SS format
+  } else {
+    return null; // Return null if no time is found
+  }
+}
+
 function sendWebhook(message){
     fetch(webhookURL, {
         method: "POST",
@@ -63,6 +76,8 @@ function sendWebhook(message){
                 }else{
                     message = username + " reaped " + timereaped + " (" + getTime(timereaped) + " seconds) with a " + bonus + ".";
                 }
+                message += " Reaped at <t:"+Math.floor(Date.now() / 1000);
++":d>, "+extractTimeFromString(content.textContent)
                 sendWebhook(message);
                 lastReap = content;
             }
