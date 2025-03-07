@@ -1,5 +1,6 @@
 let webhookURL = "https://discord.com/api/webhooks/1347016202530328588/A7P9G1H-A_iw847pBPADBj6lWDoCjcyD8OpzrIiFDIu0iAWidpBudELEZkL5Xylz5lU6"; // Replace with your Discord Webhook URL
 let lastReap = document.getElementById("recent-reaps").children[1];
+let pingsent = false;
 
 function getTime(timestr){ //Get timer from jQuery selector
     const count = timestr.split(" ");
@@ -91,10 +92,9 @@ function sendWebhook(message){
                 sendWebhook(message);
                 lastReap = content;
             }
-            let pingsent = false;
             const hour = new Date().getHours();
-            const hourandpingtime = [15,15,15,15,14,12,10,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,2,13]
-            if(getTime(document.getElementById("last-reap").textContent) > hourandpingtime*60 && getTime(document.getElementById("last-reap").textContent) % 60 < 1 && pingsent == false){
+            const hourandpingtime = [15,15,15,14,13,12,10,8,8,8,8,8,8,8,8,8,8,8,8,8,8,10,12,13]
+            if(getTime(document.getElementById("last-reap").textContent) > hourandpingtime[hour]*60 && getTime(document.getElementById("last-reap").textContent) % 60 < 1 && pingsent == false){
                 sendWebhook("@everyone Timer is at " + getTime(document.getElementById("last-reap").textContent) + " seconds.");
                 pingsent = true
             }else if(getTime(document.getElementById("last-reap").textContent) % 60 > 2){
