@@ -94,7 +94,7 @@ function sendWebhook(message){
             }
             const hour = new Date().getHours();
             const hourandpingtime = [15,15,15,14,13,12,10,8,8,8,8,8,8,8,8,8,8,8,8,8,8,10,12,13]
-            if(getTime(document.getElementById("last-reap").textContent) > hourandpingtime[hour]*60 && getTime(document.getElementById("last-reap").textContent) % 60 < 1 && pingsent == false){
+            if(getTime(document.getElementById("last-reap").textContent) >= hourandpingtime[hour]*60 && getTime(document.getElementById("last-reap").textContent) % 60 < 1 && pingsent == false){
                 sendWebhook("@everyone Timer is at " + getTime(document.getElementById("last-reap").textContent) + " seconds.");
                 pingsent = true
             }else if(getTime(document.getElementById("last-reap").textContent) % 60 > 2){
