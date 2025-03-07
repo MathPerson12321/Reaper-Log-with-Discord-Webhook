@@ -71,6 +71,11 @@ function sendWebhook(message){
             let content = document.getElementById("recent-reaps").children[1];
             if(content != lastReap){
                 let timereaped = extractLastTime(content.textContent);
+                const count = timereaped.split(" ");
+                while(count.length > 4){
+                    count.pop();
+                }
+                timereaped = count.join(" ");
                 let username = extractUsername(content.textContent);
                 let bonus = extractBonus(content.textContent);
                 let message = "";
