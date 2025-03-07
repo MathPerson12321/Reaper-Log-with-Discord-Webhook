@@ -36,7 +36,7 @@ function extractBonus(str) {
 
 function extractTimeFromString(inputString) {
   // Regular expression to match the time format HH:MM:SS
-  const timeRegex = /\b\d{2}:\d{2}:\d{2}\b/;
+  const timeRegex = /\b\d{1,2}:\d{2}:\d{2}\b/;
   
   const match = inputString.match(timeRegex);
   
