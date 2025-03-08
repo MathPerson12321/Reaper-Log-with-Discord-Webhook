@@ -30,8 +30,11 @@ function extractUsername(str) {
 }
 
 function extractBonus(str) {
-    const match = str.match(/(\w+ reaped on \w{3} \s?\d{1,2}, \d{1,2}:\d{2}:\d{2} and gained \d{1,2} minutes, \d{1,2} seconds) (Double|Triple|Quadruple|Quintuple|Ultra Rare Octuple) Reap!$/);
-    return match ? match[2] : null;
+    const regex = /(?:\d+\s+minutes?,\s+\d+\s+seconds?)\s*([\w\s]+?)?!*$/;
+    
+    const match = str.match(regex);
+    console.log(match)
+    return match ? match[1] : null;
 }
 
 function extractTimeFromString(inputString) {
@@ -78,6 +81,7 @@ function sendWebhook(message){
                 timereaped = count.join(" ");
                 let username = extractUsername(content.textContent);
                 let bonus = extractBonus(content.textContent);
+                console.log(bonus)
                 let message = "";
                 if(bonus == null){
                     message = username + " reaped " + timereaped + " (" + getTime(timereaped) + " seconds).";
