@@ -97,7 +97,7 @@ function sendWebhook(message){
                 lastReap = content;
             }
             const hour = new Date().getHours();
-            const hourandpingtime = [15,15,15,14,13,12,10,8,8,8,8,8,8,8,8,8,8,8,8,8,8,10,12,13]
+            const hourandpingtime = [17,17,17,17,17,15,13,11,9,9,9,9,9,9,9,9,9,9,9,9,9,11,13,15]
             if(getTime(document.getElementById("last-reap").textContent) >= hourandpingtime[hour]*60 && getTime(document.getElementById("last-reap").textContent) % 60 < 1 && pingsent == false){
                 sendWebhook("@everyone Timer is at " + getTime(document.getElementById("last-reap").textContent) + " seconds.");
                 pingsent = true
@@ -107,3 +107,4 @@ function sendWebhook(message){
         }, 200);
     })(100, 362); //change these vals (in seconds) if you want.
 })();
+
