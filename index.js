@@ -1,4 +1,5 @@
 let webhookURL = "https://discord.com/api/webhooks/1347016202530328588/A7P9G1H-A_iw847pBPADBj6lWDoCjcyD8OpzrIiFDIu0iAWidpBudELEZkL5Xylz5lU6"; // Replace with your Discord Webhook URL
+let webhook2 = "https://discord.com/api/webhooks/1348850113673564200/ZTMMeANtUFM9PsEbxUCwb0y1hGeqmiND7cOUB23Joub8pVeDj53rXTd8sltJkWfJMKu9";
 let lastReap = document.getElementById("recent-reaps").children[1];
 let pingsent = false;
 
@@ -52,6 +53,21 @@ function extractTimeFromString(inputString) {
 
 function sendWebhook(message){
     fetch(webhookURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            content: message
+        })
+    }).then(response => {
+        if (response.ok) {
+            console.log("Message sent successfully!");
+        } else {
+            console.log("Error sending message:", response);
+        }
+    });
+    fetch(webhook2, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
